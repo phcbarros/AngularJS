@@ -1,0 +1,79 @@
+<!DOCTYPE>
+<html ng-app="ListaTelefonica">
+<head>
+	<title>Lista Telefônica</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<style>
+		.jumbotron {
+			width: 400px;
+			text-align: center;
+			margin-top: 20px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.table {
+			margin-top: 20px;
+		}
+		.form-control {
+			margin-bottom: 5px;
+		}
+	</style>
+</head>
+<body ng-controller="ListaTelefonicaCtrl">
+	<div class="jumbotron">
+		<h3>{{ app }}</h3>
+		
+		<table class='table table-striped'>
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Telefone</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="contato in contatos">
+					<td>{{ contato.nome }}</td>
+					<td>{{ contato.telefone }}</td>
+				</tr>
+			</tbody>
+		</table>
+		<input type="text" class='form-control' placeholder="Nome" ng-model="contato.nome"/>
+		<input type="text" class='form-control' placeholder="Telefone" ng-model="contato.telefone"/>
+		<button class="btn btn-primary" ng-click="adicionarContato(contato)">Adicionar</button>
+		
+	</div>
+</body>
+<script src="../bower_components/angularjs/angular.min.js"></script>
+<script>
+	
+	angular.module('ListaTelefonica', []);
+	angular.module('ListaTelefonica').controller('ListaTelefonicaCtrl', ['$scope', function($scope){
+		$scope.app = "Lista Telefônica";	
+		
+		$scope.contatos = [
+			{
+				nome: 'Paulo',
+				telefone: '88794512'
+			},
+			{
+				nome: 'Amanda',
+				telefone: '88797812'
+			},
+			{
+				nome: 'Maria',
+				telefone: '88794566'
+			}
+		];	
+		
+		$scope.adicionarContato = function(contato){
+			$scope.contatos.push(angular.copy(contato)); //angular.copy desvincula o contato do escopo com o contato adicionado na lista	 
+			delete $scope.contato; //apaga o objeto do escopo
+		};
+		
+	}]);
+	
+</script>
+</html>
