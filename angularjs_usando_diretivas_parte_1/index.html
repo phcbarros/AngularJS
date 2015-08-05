@@ -13,12 +13,19 @@
 			margin-top: 20px;
 			margin-left: auto;
 			margin-right: auto;
+			padding: 10px;
 		}
 		.table {
 			margin-top: 20px;
 		}
 		.form-control {
 			margin-bottom: 5px;
+		}
+		.selecionado{
+			background-color: yellow !important;
+		}
+		.negrito{
+			font-weight: bold;
 		}
 	</style>
 </head>
@@ -29,21 +36,35 @@
 		<table class='table table-striped'>
 			<thead>
 				<tr>
+					<th></th>
 					<th>Nome</th>
 					<th>Telefone</th>
+					<th>Cor</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="contato in contatos">
+				<tr ng-repeat="contato in contatos" ng-class="{'selecionado negrito' : contato.selecionado}">
+					<td>
+						<input type="checkbox" ng-model="contato.selecionado" />	
+					</td>
 					<td>{{ contato.nome }}</td>
 					<td>{{ contato.telefone }}</td>
+					<td>
+						<div style="width: 20px; height: 20px;" ng-style="{'background-color': contato.cor}"></div>
+					</td>
 				</tr>
 			</tbody>
 		</table>
-		<input type="text" class='form-control' placeholder="Nome" ng-model="contato.nome"/>
-		<input type="text" class='form-control' placeholder="Telefone" ng-model="contato.telefone"/>
-		<button class="btn btn-primary" ng-click="adicionarContato(contato)">Adicionar</button>
 		
+		<input type="text" class='form-control' placeholder="Nome" ng-model="contato.nome" required/>
+		<input type="text" class='form-control' placeholder="Telefone" ng-model="contato.telefone" required/>
+		<input type="text" class='form-control' placeholder="Cor" ng-model="contato.cor"/>
+		<select class="form-control" 
+			ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras" >
+			<option value="">Selecione</option>
+		</select>
+		<button class="btn btn-primary" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">Adicionar</button>
+		<button class="btn btn-danger" ng-click="removerContato(contatos)" ng-disabled="!isContatoSelecionado(contatos)">Remover</button>
 	</div>
 </body>
 <script src="../bower_components/angularjs/angular.min.js"></script>
@@ -54,25 +75,36 @@
 		$scope.app = "Lista Telefônica";	
 		
 		$scope.contatos = [
-			{
-				nome: 'Paulo',
-				telefone: '88794512'
-			},
-			{
-				nome: 'Amanda',
-				telefone: '88797812'
-			},
-			{
-				nome: 'Maria',
-				telefone: '88794566'
-			}
+			{ nome: 'Paulo', telefone: '88794512', cor: 'blue'	},
+			{ nome: 'Amanda', telefone: '88797812', cor: 'green'},
+			{ nome: 'Maria', telefone: '88794566', cor: 'red'}
 		];	
+		
+		$scope.operadoras = [
+			{nome: 'Vivo', codigo: 1, categoria: 'Celular'},
+			{nome: 'Tim', codigo: 14, categoria: 'Celular'},
+			{nome: 'Claro', codigo: 13, categoria: 'Celular'},
+			{nome: 'Telefonica', codigo: 15, categoria: 'Fixo'},
+			{nome: 'Embratel', codigo: 21, categoria: 'Fixo'},
+		]
 		
 		$scope.adicionarContato = function(contato){
 			$scope.contatos.push(angular.copy(contato)); //angular.copy desvincula o contato do escopo com o contato adicionado na lista	 
 			delete $scope.contato; //apaga o objeto do escopo
 		};
+			
+		$scope.removerContato = function(contatos){
+			$scope.contatos = contatos.filter(function(contato){
+				return !contato.selecionado;
+			});
+		};
 		
+		$scope.isContatoSelecionado =  function(contatos){
+			return contatos.some(function(contato){
+				return contato.selecionado;
+			});
+		};
+				
 	}]);
 	
 </script>
