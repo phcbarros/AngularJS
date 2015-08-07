@@ -1,0 +1,27 @@
+{
+  "name": "Exemplos",
+  "version": "1.0.0",
+  "description": "Aplicações em AngularJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phcbarros/AngularJS.git"
+  },
+  "keywords": [
+    "angularjs"
+  ],
+  "author": "paulo barros",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phcbarros/AngularJS/issues"
+  },
+  "homepage": "https://github.com/phcbarros/AngularJS#readme",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "method-override": "^2.3.5"
+  }
+}
