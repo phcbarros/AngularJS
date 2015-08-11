@@ -56,7 +56,7 @@
 				<option value="">Selecione</option>
 			</select>
 		</form>
-
+		
 		<div  ng-show="contatoForm.nome.$dirty" ng-messages="contatoForm.nome.$error">
 			<!-- Exibe a mensagem se o campo nome foi preenchido e se já foi preenchido alguma vez -->
 			<div ng-message="required" class="alert alert-danger">
@@ -81,6 +81,21 @@
 				O campo telefone tem que estar no formato (9)9999-9999.
 			</div>
 		</div>
+		</div>
+		
+		<div ng-show="contatoForm.data.$dirty" ng-messages="contatoForm.data.$error" >
+			<!-- Exibe a mensagem se o dia data informada não foi preenchido corretamente -->
+			<div ng-message="validDateDay"  class="alert alert-danger">
+				Por favor, informe um dia válido.
+			</div>
+			<!-- Exibe a mensagem se o mês data informada não foi preenchido corretamente -->
+			<div ng-message="validDateMonth"  class="alert alert-danger">
+				Por favor, informe um mês válido.
+			</div>
+			<!-- Exibe a mensagem se o ano data informada não foi preenchido corretamente -->
+			<div ng-message="validDateYear"  class="alert alert-danger">
+				O ano informado não pode ser maior que o ano atual!
+			</div>
 		</div>
 		
 		<div ng-show="contatoForm.operadora.$dirty" ng-messages="contatoForm.operadora.$error" >
