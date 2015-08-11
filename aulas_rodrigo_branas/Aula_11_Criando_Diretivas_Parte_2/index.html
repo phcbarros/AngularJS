@@ -13,7 +13,7 @@
 	<div class="jumbotron">
 		<h3>{{ app }}</h3>
 		
-		<div ui-alert title="Ops, aconteceu um erro!">
+		<div ui-alert title="Ops, aconteceu um erro!" ng-show="error">
 			{{error}}
 		</div>
 		
@@ -55,6 +55,7 @@
 				ng-options="operadora.nome + ' (' + (operadora.preco | currency ) + ')'  group by operadora.categoria for operadora in operadoras  | orderBy: 'nome' | orderBy: 'categoria' " >
 				<option value="">Selecione</option>
 			</select>
+			<input type="text" class='form-control' placeholder="CPF" ng-model="contato.cpf" name="cpf" ui-cpf ng-pattern="/^\d{3}.\d{3}.\d{3}-\d{2}$/"/>
 		</form>
 		
 		<div  ng-show="contatoForm.nome.$dirty" ng-messages="contatoForm.nome.$error">
@@ -78,7 +79,7 @@
 			
 			<!-- Exibe a mensagem se o formato do campo telefone foi preenchido corretamente -->
 			<div ng-message="pattern"  class="alert alert-danger">
-				O campo telefone tem que estar no formato (99)[9]9999-9999.
+				O campo telefone tem que estar no formato (99)(9)9999-9999.
 			</div>
 		</div>
 		</div>
@@ -105,6 +106,13 @@
 			</div>
 		</div>
 		
+		<div  ng-show="contatoForm.cpf.$dirty" ng-messages="contatoForm.cpf.$error">
+			<!-- Exibe a mensagem se o campo cpf não está no formado válido -->
+			<div ng-message="pattern" class="alert alert-danger">
+				O campo CPF tem que estar no formato 999.999.999-99.
+			</div>
+		</div>
+		
 		<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar</button>
 		<button class="btn btn-danger btn-block" ng-click="removerContato(contatos)" ng-hide="!isContatoSelecionado(contatos)">Remover</button>
 		
@@ -127,4 +135,5 @@
 <script src="js/directives/uiAlertDirective.js"></script>
 <script src="js/directives/uiDateDirective.js"></script>
 <script src="js/directives/uiPhoneDirective.js"></script>
+<script src="js/directives/uiCpfDirective.js"></script>
 </html>
