@@ -20,9 +20,9 @@ app.listen(3000, function(){
 
 //Contatos
 var contatos = [
-	{ id: 1, nome: 'Paulo Barros', telefone: '8879-4512', cor: 'blue', data: new Date(2015, 1, 12), serial: '845+%6*', operadora: {nome: 'Vivo', codigo: 1, categoria: 'Celular', preco: 10}},
-	{ id: 2, nome: 'Amanda DA SILVA', telefone: '8879-7812', cor: 'green', data: new Date(2014,11,4), serial: '+:505$ 55', operadora: {nome: 'Tim', codigo: 14, categoria: 'Celular', preco: 14}},
-	{ id: 3, nome: 'MARIA aparecida DA CONCEIÇÃO', telefone: '8879-4566', cor: 'red', data: new Date(2015,2,21), serial: '&0!6&(:$2', operadora: {nome: 'Telefonica', codigo: 15, categoria: 'Fixo', preco: 10}},
+	{ id: 1, nome: 'Paulo Barros', telefone: '8879-4512', cor: 'blue', data: new Date(1423706400000), serial: '845+%6*', operadora: {nome: 'Vivo', codigo: 1, categoria: 'Celular', preco: 10}},
+	{ id: 2, nome: 'Amanda DA SILVA', telefone: '8879-7812', cor: 'green', data: new Date('2014-11-4'), serial: '+:505$ 55', operadora: {nome: 'Tim', codigo: 14, categoria: 'Celular', preco: 14}},
+	{ id: 3, nome: 'MARIA aparecida DA CONCEIÇÃO', telefone: '8879-4566', cor: 'red', data: 1431388800000, serial: '&0!6&(:$2', operadora: {nome: 'Telefonica', codigo: 15, categoria: 'Fixo', preco: 10}},
   { id: 4, nome: 'Evelin Barros', telefone: '7845-4566', cor: 'pink', data: new Date(2015,2,23), serial: '&%!6&(:$4', operadora: {nome: 'Telefonica', codigo: 15, categoria: 'Fixo', preco: 10}},
   { id: 5, nome: 'João Pedro Dos Santos', telefone: '1279-4566', cor: 'black', data: new Date(2014,3,21), serial: '*0!6&(:$2', operadora: {nome: 'Tim', codigo: 14, categoria: 'Fixo', preco: 10}}
 ];

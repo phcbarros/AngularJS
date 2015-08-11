@@ -1,0 +1,114 @@
+<!DOCTYPE>
+<html ng-app="ListaTelefonica">
+<head>
+	<title>Lista Telefônica</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/app.css">
+	<link rel="stylesheet" href="css/ui.css">
+</head>
+<body ng-controller="ListaTelefonicaCtrl">
+	<div class="jumbotron">
+		<h3>{{ app }}</h3>
+		
+		<div ui-alert title="Ops, aconteceu um erro!">
+			{{error}}
+		</div>
+		
+		<input type="text" class="form-control" ng-model='criterioDeBusca' placeholder="O que você está buscando?"/>
+		<table class='table table-striped'>
+			<thead>
+				<tr>
+					<th></th>
+					<th>Serial</th>
+					<th><a role="button" ng-click="ordenarPor('nome')">Nome</a></th>
+					<th><a role="button" ng-click="ordenarPor('telefone')">Telefone</a></th>
+					<th><a role="button" ng-click="ordenarPor('cor')">Cor</a></th>
+					<th><a role="button" ng-click="ordenarPor('operadora')">Operadora</a></th>
+					<th><a role="button" ng-click="ordenarPor('data')">Data</a></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-class="{'selecionado negrito' : contato.selecionado}" ng-repeat="contato in contatos | filter: criterioDeBusca | orderBy: criterioDeOrdenacao : direcaoOrdenacao " >
+					<td>
+						<input type="checkbox" ng-model="contato.selecionado" />	
+					</td>
+					<td>{{ contato.serial }}</td>
+					<td>{{ contato.nome | name | ellipsis : 20 }}</td>
+					<td>{{ contato.telefone }}</td>
+					<td>
+						<div style="width: 20px; height: 20px;" ng-style="{'background-color': contato.cor}"></div>
+					</td>
+					<td>{{ contato.operadora.nome }}</td>
+					<td>{{ contato.data | date: 'dd/MM/yyyy'}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<form name="contatoForm">
+			<input type="text" class='form-control' placeholder="Nome" ng-model="contato.nome" name="nome" ng-required="true" ng-minlength="5"/>
+			<input type="text" class='form-control' placeholder="Telefone" ng-model="contato.telefone" name="telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/"/>
+			<input type="text" class='form-control' placeholder="Cor" ng-model="contato.cor"/>
+			<input type="text" class="form-control" placeholder="Data" name="data" ng-model="contato.data" ui-date/>
+			<select class="form-control" ng-required="true" name="operadora" ng-model="contato.operadora" 
+				ng-options="operadora.nome + ' (' + (operadora.preco | currency ) + ')'  group by operadora.categoria for operadora in operadoras  | orderBy: 'nome' | orderBy: 'categoria' " >
+				<option value="">Selecione</option>
+			</select>
+		</form>
+
+		<div  ng-show="contatoForm.nome.$dirty" ng-messages="contatoForm.nome.$error">
+			<!-- Exibe a mensagem se o campo nome foi preenchido e se já foi preenchido alguma vez -->
+			<div ng-message="required" class="alert alert-danger">
+				Por favor, informe o nome.
+			</div>
+
+			<!-- Exibe a mensagem se o tamanho minimo do campo nome está correto -->
+			<div ng-message="minlength"  class="alert alert-danger">
+				O campo nome deve ter no mínino 5 caracteres.
+			</div>
+		</div>
+		
+		<div ng-show="contatoForm.telefone.$dirty">
+			<div ng-messages="contatoForm.telefone.$error">
+			<!-- Exibe a mensagem se o campo telefone foi preenchido e se já foi preenchido alguma vez-->
+			<div ng-message="required"  class="alert alert-danger">
+				Por favor, informe o telefone.
+			</div>
+			
+			<!-- Exibe a mensagem se o formato do campo telefone foi preenchido corretamente -->
+			<div ng-message="pattern"  class="alert alert-danger">
+				O campo telefone tem que estar no formato (9)9999-9999.
+			</div>
+		</div>
+		</div>
+		
+		<div ng-show="contatoForm.operadora.$dirty" ng-messages="contatoForm.operadora.$error" >
+			<!-- Exibe a mensagem se o campo operadora foi preenchido e se já foi preenchido alguma vez -->
+			<div ng-message="required"  class="alert alert-danger">
+				Por favor, informe o a operadora.
+			</div>
+		</div>
+		
+		<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar</button>
+		<button class="btn btn-danger btn-block" ng-click="removerContato(contatos)" ng-hide="!isContatoSelecionado(contatos)">Remover</button>
+		
+		<!--<div ng-include="'view/footer.html'"></div>-->
+		
+	</div>
+</body>
+<script src="../../bower_components/angular-full/angular.min.js"></script>
+<script src="../../bower_components/angular-full/angular-messages.min.js"></script>
+<script src="../../bower_components/angular-full/i18n/angular-locale_pt-br.js"></script>
+<script src="js/app.js"></script>
+<script src="js/value/configValue.js"></script>
+<script src="js/config/serialGeneratorConfig.js"></script>
+<script src="js/services/serialGeneratorService.js"></script>
+<script src="js/services/contatoAPIService.js"></script>
+<script src="js/services/operadoraAPIService.js"></script>
+<script src="js/filters/nameFilter.js"></script>
+<script src="js/filters/ellipsisFilter.js"></script>
+<script src="js/controllers/ListaTelefonicaCtrl.js"></script>
+<script src="js/directives/uiAlertDirective.js"></script>
+<script src="js/directives/uiDateDirective.js"></script>
+</html>
