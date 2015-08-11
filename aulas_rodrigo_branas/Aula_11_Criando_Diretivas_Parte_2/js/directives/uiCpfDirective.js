@@ -18,8 +18,7 @@ angular.module('ListaTelefonica').directive('uiCpf', function(){
 				 
 				if(cpf.length > 11)
 					cpf = cpf.substring(0,11) + '-' + cpf.substring(11,13);
-					
-				console.log(cpf.substring(0,3));
+
 				return cpf;
 			};
 			

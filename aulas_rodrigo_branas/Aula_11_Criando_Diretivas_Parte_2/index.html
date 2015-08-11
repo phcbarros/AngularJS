@@ -55,8 +55,9 @@
 				ng-options="operadora.nome + ' (' + (operadora.preco | currency ) + ')'  group by operadora.categoria for operadora in operadoras  | orderBy: 'nome' | orderBy: 'categoria' " >
 				<option value="">Selecione</option>
 			</select>
-			<input type="text" class='form-control' placeholder="CPF" ng-model="contato.cpf" name="cpf" ui-cpf ng-pattern="/^\d{3}.\d{3}.\d{3}-\d{2}$/"/>
+			<!--<input type="text" class='form-control' placeholder="CPF" ng-model="contato.cpf" name="cpf" ui-cpf ng-pattern="/^\d{3}.\d{3}.\d{3}-\d{2}$/"/>-->
 			<!--<input type="text" class='form-control' placeholder="CNPJ" ng-model="contato.cnpj" name="cnpj" ui-cnpj ng-pattern="/^\d{2}.\d{3}.\d{3}\/\d{4}-\d{2}$/"/>-->
+			<!--<input type="text" class='form-control' placeholder="CEP" ng-model="contato.cep" name="cep" ng-pattern="/^\d{5}-\d{3}$/" ui-cep/>-->
 		</form>
 		
 		<div  ng-show="contatoForm.nome.$dirty" ng-messages="contatoForm.nome.$error">
@@ -138,4 +139,5 @@
 <script src="js/directives/uiPhoneDirective.js"></script>
 <script src="js/directives/uiCpfDirective.js"></script>
 <script src="js/directives/uiCnpjDirective.js"></script>
+<script src="js/directives/uiCepDirective.js"></script>
 </html>
