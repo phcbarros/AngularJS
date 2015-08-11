@@ -48,7 +48,7 @@
 		</table>
 		<form name="contatoForm">
 			<input type="text" class='form-control' placeholder="Nome" ng-model="contato.nome" name="nome" ng-required="true" ng-minlength="5"/>
-			<input type="text" class='form-control' placeholder="Telefone" ng-model="contato.telefone" name="telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/"/>
+			<input type="text" class='form-control' placeholder="Telefone" ng-model="contato.telefone" name="telefone" ng-required="true" ng-pattern="/^\(\d{2}\)\d{4,5}-\d{4}$/" ui-phone/>
 			<input type="text" class='form-control' placeholder="Cor" ng-model="contato.cor"/>
 			<input type="text" class="form-control" placeholder="Data" name="data" ng-model="contato.data" ui-date/>
 			<select class="form-control" ng-required="true" name="operadora" ng-model="contato.operadora" 
@@ -78,7 +78,7 @@
 			
 			<!-- Exibe a mensagem se o formato do campo telefone foi preenchido corretamente -->
 			<div ng-message="pattern"  class="alert alert-danger">
-				O campo telefone tem que estar no formato (9)9999-9999.
+				O campo telefone tem que estar no formato (99)[9]9999-9999.
 			</div>
 		</div>
 		</div>
@@ -126,4 +126,5 @@
 <script src="js/controllers/ListaTelefonicaCtrl.js"></script>
 <script src="js/directives/uiAlertDirective.js"></script>
 <script src="js/directives/uiDateDirective.js"></script>
+<script src="js/directives/uiPhoneDirective.js"></script>
 </html>

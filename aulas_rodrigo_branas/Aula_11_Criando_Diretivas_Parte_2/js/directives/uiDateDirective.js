@@ -29,7 +29,7 @@ angular.module('ListaTelefonica').directive('uiDate', function($filter){
 			//$parsers = Array de funções executadas sempre que o controle lê o valor do DOM
 			//As funções são chamadas na ordem que foram adicionadas
 			ctrl.$parsers.push(function(value){
-				console.log('parseador');
+				//console.log('parseador');
 				if(value.length === 10){
 					var arrayDate = value.split('/');
 					return new Date(arrayDate[2], parseInt(arrayDate[1]) - 1, arrayDate[0]).getTime();	
@@ -39,7 +39,7 @@ angular.module('ListaTelefonica').directive('uiDate', function($filter){
 			//$formatters = Array de funções executadas sempre que o valor do modelo mude
 			//As funções são chamadas na ordem inversa
 			ctrl.$formatters.push(function(value){
-				console.log('formatador');
+				//console.log('formatador');
 				//$filter(tipo)(value, mascara);
 				return $filter('date') (value,'dd/MM/yyyy');
 			});
@@ -53,7 +53,7 @@ angular.module('ListaTelefonica').directive('uiDate', function($filter){
 			//validação somente para teste de entendimento do $validators
 			ctrl.$validators.validDateDay = function(modelValue, viewValue ){
 				
-				console.log('validador Dia', modelValue, viewValue);
+				//console.log('validador Dia', modelValue, viewValue);
 			
 				var value = viewValue, //(modelValue || viewValue)
 					arrayDate;
@@ -75,7 +75,7 @@ angular.module('ListaTelefonica').directive('uiDate', function($filter){
 			//validação somente para teste de entendimento do $validators
 			ctrl.$validators.validDateMonth = function(modelValue, viewValue ){
 				
-				console.log('validador Mês', modelValue, viewValue);
+				//console.log('validador Mês', modelValue, viewValue);
 			
 				var value = viewValue, //(modelValue || viewValue)
 					arrayDate;
@@ -97,7 +97,7 @@ angular.module('ListaTelefonica').directive('uiDate', function($filter){
 			//validação somente para teste de entendimento do $validators
 			ctrl.$validators.validDateYear = function(modelValue, viewValue ){
 				
-				console.log('validador Ano', modelValue, viewValue);
+				//console.log('validador Ano', modelValue, viewValue);
 			
 				var value = viewValue, //(modelValue || viewValue)
 					arrayDate, anoAtual;
