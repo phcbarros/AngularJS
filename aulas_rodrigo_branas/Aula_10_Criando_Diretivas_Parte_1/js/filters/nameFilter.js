@@ -1,4 +1,4 @@
-/// <reference path="../../../../typings/angularjs/angular.d.ts"/>
+/// <reference path="../../../typings/angularjs/angular.d.ts"/>
 angular.module("ListaTelefonica").filter('name', function(){
 	
 	return function(input){
