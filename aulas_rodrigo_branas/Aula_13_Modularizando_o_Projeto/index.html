@@ -42,7 +42,7 @@
 					<th>Serial</th>
 					<th><a role="button" ng-click="ordenarPor('nome')">Nome</a></th>
 					<th><a role="button" ng-click="ordenarPor('telefone')">Telefone</a></th>
-					<th><a role="button" ng-click="ordenarPor('cor')">Cor</a></th>
+					<th>Cor</th>
 					<th><a role="button" ng-click="ordenarPor('operadora')">Operadora</a></th>
 					<th><a role="button" ng-click="ordenarPor('data')">Data</a></th>
 				</tr>
@@ -65,17 +65,17 @@
 		</table>
 		<form name="contatoForm">
 			<input type="text" class='form-control' placeholder="Nome" ng-model="contato.nome" name="nome" ng-required="true" ng-minlength="5"/>
-			<input type="text" class='form-control' placeholder="Telefone" ng-model="contato.telefone" name="telefone" ng-required="true" ng-pattern="/^\(\d{2}\)\d{4,5}-\d{4}$/" ui-phone/>
+			<input type="text" class='form-control' placeholder="Telefone" ng-model="contato.telefone" name="telefone" ng-required="true" ng-pattern="/^\(\d{2}\)\d{4,5}-\d{4}$/" ui-mask-phone/>
 			<input type="text" class='form-control' placeholder="Cor" ng-model="contato.cor"/>
 			<input type="text" class="form-control" placeholder="Data" name="data" ng-model="contato.data" ui-date/>
 			<select class="form-control" ng-required="true" name="operadora" ng-model="contato.operadora" 
 				ng-options="operadora.nome + ' (' + (operadora.preco | currency ) + ')'  group by operadora.categoria for operadora in operadoras  | orderBy: 'nome' | orderBy: 'categoria' " >
 				<option value="">Selecione</option>
 			</select>
-			<!--<input type="text" class="form-control" placeholder="Hora" name="hora" ng-model="contato.hora" ui-hour/>-->
-			<!--<input type="text" class='form-control' placeholder="CPF" ng-model="contato.cpf" name="cpf" ui-cpf ng-pattern="/^\d{3}.\d{3}.\d{3}-\d{2}$/"/>-->
-			<!--<input type="text" class='form-control' placeholder="CNPJ" ng-model="contato.cnpj" name="cnpj" ui-cnpj ng-pattern="/^\d{2}.\d{3}.\d{3}\/\d{4}-\d{2}$/"/>-->
-			<!--<input type="text" class='form-control' placeholder="CEP" ng-model="contato.cep" name="cep" ng-pattern="/^\d{5}-\d{3}$/" ui-cep/>-->
+			<input type="text" class="form-control" placeholder="Hora" name="hora" ng-model="contato.hora" ui-mask-hour/>
+			<input type="text" class='form-control' placeholder="CPF" ng-model="contato.cpf" name="cpf" ui-mask-cpf ng-pattern="/^\d{3}.\d{3}.\d{3}-\d{2}$/"/>
+			<input type="text" class='form-control' placeholder="CNPJ" ng-model="contato.cnpj" name="cnpj" ui-mask-cnpj ng-pattern="/^\d{2}.\d{3}.\d{3}\/\d{4}-\d{2}$/"/>
+			<input type="text" class='form-control' placeholder="CEP" ng-model="contato.cep" name="cep" ng-pattern="/^\d{5}-\d{3}$/" ui-mask-cep/>
 		</form>
 		
 		<div  ng-show="contatoForm.nome.$dirty" ng-messages="contatoForm.nome.$error">
@@ -145,6 +145,7 @@
 <script src="../../bower_components/angular-full/i18n/angular-locale_pt-br.js"></script>
 <script src="../libs/serialGenerator/serialGenerator.js"></script>
 <script src="../libs/ui-accordion/ui-accordion.js"></script>
+<script src="../libs/ui-mask/ui-mask.js"></script>
 <script src="js/app.js"></script>
 <script src="js/value/configValue.js"></script>
 <script src="js/config/serialGeneratorConfig.js"></script>
@@ -155,10 +156,5 @@
 <script src="js/controllers/ListaTelefonicaCtrl.js"></script>
 <script src="js/directives/uiAlertDirective.js"></script>
 <script src="js/directives/uiDateDirective.js"></script>
-<script src="js/directives/uiPhoneDirective.js"></script>
-<script src="js/directives/uiCpfDirective.js"></script>
-<script src="js/directives/uiCnpjDirective.js"></script>
-<script src="js/directives/uiCepDirective.js"></script>
-<script src="js/directives/uiHourDirective.js"></script>
 <script src="js/config/httpConfig.js"></script>
 </html>
