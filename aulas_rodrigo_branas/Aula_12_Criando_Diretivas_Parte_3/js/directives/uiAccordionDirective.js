@@ -1,4 +1,6 @@
 /// <reference path="../../../../typings/angularjs/angular.d.ts"/>
+
+//responsável pela comunicação entre as diretivas
 angular.module('ListaTelefonica').directive('uiAccordions', function(){
 	return {
 		restrict: 'E',

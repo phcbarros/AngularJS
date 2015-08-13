@@ -32,6 +32,7 @@
 			
 		</ui-accordions>
 		
+		<hr/>
 		
 		<input type="text" class="form-control" ng-model='criterioDeBusca' placeholder="O que você está buscando?"/>
 		<table class='table table-striped'>
@@ -139,13 +140,14 @@
 		
 	</div>
 </body>
-<script src="../../bower_components/angular-full/angular.min.js"></script>
+<script src="../../bower_components/angular-full/angular.js"></script>
 <script src="../../bower_components/angular-full/angular-messages.min.js"></script>
 <script src="../../bower_components/angular-full/i18n/angular-locale_pt-br.js"></script>
+<script src="../libs/serialGenerator/serialGenerator.js"></script>
+<script src="../libs/ui-accordion/ui-accordion.js"></script>
 <script src="js/app.js"></script>
 <script src="js/value/configValue.js"></script>
 <script src="js/config/serialGeneratorConfig.js"></script>
-<script src="js/services/serialGeneratorService.js"></script>
 <script src="js/services/contatoAPIService.js"></script>
 <script src="js/services/operadoraAPIService.js"></script>
 <script src="js/filters/nameFilter.js"></script>
@@ -157,7 +159,6 @@
 <script src="js/directives/uiCpfDirective.js"></script>
 <script src="js/directives/uiCnpjDirective.js"></script>
 <script src="js/directives/uiCepDirective.js"></script>
-<script src="js/directives/uiAccordionDirective.js"></script>
 <script src="js/directives/uiHourDirective.js"></script>
 <script src="js/config/httpConfig.js"></script>
 </html>
