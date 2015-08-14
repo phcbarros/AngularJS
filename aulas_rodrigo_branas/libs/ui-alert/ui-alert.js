@@ -1,7 +1,12 @@
-/// <reference path="../../../../typings/angularjs/angular.d.ts"/>
-angular.module('ListaTelefonica').directive('uiAlert', function(){
+angular.module('uiAlert', []);
+
+angular.module('uiAlert').run(function($templateCache){
+	$templateCache.put('view/alert.tpl.html', '<div class="ui-alert"><div class="ui-alert-title">{{title}}</div><div class="ui-alert-message" ng-transclude></div></div>');
+});
+
+angular.module('uiAlert').directive('uiAlert', function(){
 	return {
-		templateUrl: 'view/alert.html',
+		templateUrl: 'view/alert.tpl.html',
 		replace: true, //substitui o elemento pela conteudo do template
 		restrict: 'AE', //restringe o modo de utilização da diretiva	ao atributo, elemento, classe e comentário, default atributo
 		scope:{
