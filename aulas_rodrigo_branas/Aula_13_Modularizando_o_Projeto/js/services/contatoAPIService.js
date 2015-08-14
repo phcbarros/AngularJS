@@ -5,6 +5,10 @@ angular.module("ListaTelefonica").factory("ContatoAPI", function($http, config){
 		return $http.get(config.baseUrl + '/contatos', {cache: true});
 	}
 	
+	var _getContato = function(id){
+		return $http.get(config.baseUrl + '/contatos/' + id);
+	}
+	
 	var _postContato = function(contato){
 		return $http.post(config.baseUrl + '/contatos', contato);
 	}
@@ -16,7 +20,8 @@ angular.module("ListaTelefonica").factory("ContatoAPI", function($http, config){
 	return {
 		getContatos: _getContatos,
 		postContato: _postContato,
-		deleteContato: _deleteContato
+		deleteContato: _deleteContato,
+		getContato: _getContato
 	}
 	
 });

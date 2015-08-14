@@ -20,7 +20,7 @@ app.listen(3000, function(){
 
 //Contatos
 var contatos = [
-	{ id: 1, nome: 'Paulo Barros', telefone: '8879-4512', cor: 'blue', data: new Date(1423706400000), serial: '845+%6*', operadora: {nome: 'Vivo', codigo: 1, categoria: 'Celular', preco: 10}},
+	{ id: 1, nome: 'Paulo', telefone: '8879-4512', cor: 'blue', data: new Date(1423706400000), serial: '845+%6*', operadora: {nome: 'Vivo', codigo: 1, categoria: 'Celular', preco: 10}},
 	{ id: 2, nome: 'Amanda DA SILVA', telefone: '8879-7812', cor: 'green', data: new Date('2014-11-4'), serial: '+:505$ 55', operadora: {nome: 'Tim', codigo: 14, categoria: 'Celular', preco: 14}},
 	{ id: 3, nome: 'MARIA aparecida DA CONCEIÇÃO', telefone: '8879-4566', cor: 'red', data: 1431388800000, serial: '&0!6&(:$2', operadora: {nome: 'Telefonica', codigo: 15, categoria: 'Fixo', preco: 10}},
   { id: 4, nome: 'Evelin Barros', telefone: '7845-4566', cor: 'pink', data: new Date(2015,2,23), serial: '&%!6&(:$4', operadora: {nome: 'Telefonica', codigo: 15, categoria: 'Fixo', preco: 10}},
@@ -29,6 +29,22 @@ var contatos = [
 
 app.get('/contatos', function(req, res){
 	res.status(200).json(contatos);
+});
+
+app.get('/contatos/:id', function(req, res){
+  var id = req.params.id,
+      contato = contatos[contatos.recuperarIndex(id)];
+  res.status(200).json(contato);  
+});
+
+app.get('/contato/:nome', function(req, res){
+  var nome = req.params.nome,
+      contato = contatos[contatos.recuperarIndexPorNome(nome)];
+      
+      if(contato)
+         res.json(contato);
+       else
+         res.status('404').end();  
 });
 
 app.post('/contatos', function(req, res){
@@ -73,6 +89,19 @@ Array.prototype.recuperarIndex = function (id) {
     for (; l--; i++) {
         var item = this[i];
         if (item.id === parseInt(id)) {
+            return index = i;
+        }
+    }
+    return index;
+};
+
+Array.prototype.recuperarIndexPorNome = function (nome) {
+    var index = -1,
+        i = 0,
+        l = this.length;
+    for (; l--; i++) {
+        var item = this[i];
+        if (item.nome.toLowerCase() === nome.toLowerCase()) {
             return index = i;
         }
     }
