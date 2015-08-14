@@ -1,0 +1,1 @@
+angular.module('ListaTelefonica', ['ngMessages', 'mySerialGenerator', 'myUiAccordion', 'uiMask', 'uiAlert', 'ngRoute']);

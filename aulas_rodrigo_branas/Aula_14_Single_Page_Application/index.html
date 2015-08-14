@@ -1,0 +1,169 @@
+<!DOCTYPE>
+<html ng-app="ListaTelefonica">
+<head>
+	<title>Lista Telefônica</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/app.css">
+	<link rel="stylesheet" href="css/ui.css">
+</head>
+<body ng-controller="ListaTelefonicaCtrl">
+	<div class="jumbotron">
+		<h3>{{ app }}</h3>
+
+		<div ui-alert title="Ops, aconteceu um erro!" ng-show="error">
+			{{error}}
+		</div>
+		
+		<ui-accordions>
+			<ui-accordion title="Accordion 1">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam odit delectus at inventore, quod, nihil sed laudantium libero tempora commodi iure. Libero odio in incidunt quisquam explicabo quas sapiente accusamus.
+				Natus expedita vitae repudiandae fugit temporibus adipisci. Fugit repellat tempore sunt, sapiente dolorem aut corporis rerum ab doloremque, aliquid ea eos, laborum voluptates minima esse sint atque et. Ad, ut.
+				Est repudiandae ad, molestias quae ut non alias dolorum similique consequatur voluptate expedita praesentium maiores placeat enim perferendis et voluptatibus dolores. Aperiam iste cum harum ducimus suscipit, quaerat fugit laboriosam!	
+			</ui-accordion>
+		
+			<ui-accordion title="Accordion 2">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam odit delectus at inventore, quod, nihil sed laudantium libero tempora commodi iure. Libero odio in incidunt quisquam explicabo quas sapiente accusamus.
+				Natus expedita vitae repudiandae fugit temporibus adipisci. Fugit repellat tempore sunt, sapiente dolorem aut corporis rerum ab doloremque, aliquid ea eos, laborum voluptates minima esse sint atque et. Ad, ut.
+				Est repudiandae ad, molestias quae ut non alias dolorum similique consequatur voluptate expedita praesentium maiores placeat enim perferendis et voluptatibus dolores. Aperiam iste cum harum ducimus suscipit, quaerat fugit laboriosam!	
+			</ui-accordion>
+			
+		</ui-accordions>
+		
+		<hr/>
+		
+		<input type="text" class="form-control" ng-model='criterioDeBusca' placeholder="O que você está buscando?"/>
+		<table class='table table-striped'>
+			<thead>
+				<tr>
+					<th></th>
+					<th>Serial</th>
+					<th><a role="button" ng-click="ordenarPor('nome')">Nome</a></th>
+					<th><a role="button" ng-click="ordenarPor('telefone')">Telefone</a></th>
+					<th>Cor</th>
+					<th><a role="button" ng-click="ordenarPor('operadora')">Operadora</a></th>
+					<th><a role="button" ng-click="ordenarPor('data')">Data</a></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-class="{'selecionado negrito' : contato.selecionado}" ng-repeat="contato in contatos | filter: criterioDeBusca | orderBy: criterioDeOrdenacao : direcaoOrdenacao " >
+					<td>
+						<input type="checkbox" ng-model="contato.selecionado" />	
+					</td>
+					<td>{{ contato.serial }}</td>
+					<td>{{ contato.nome | name | ellipsis : 20 }}</td>
+					<td>{{ contato.telefone }}</td>
+					<td>
+						<div style="width: 20px; height: 20px;" ng-style="{'background-color': contato.cor}"></div>
+					</td>
+					<td>{{ contato.operadora.nome }}</td>
+					<td>{{ contato.data | date: 'dd/MM/yyyy'}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<form name="contatoForm">
+			
+			<input type="text" class='form-control' placeholder="Nome" ng-model="contato.nome" name="nome" ng-required="true" ng-minlength="5" ui-unique-name/>
+			<input type="text" class='form-control' placeholder="Telefone" ng-model="contato.telefone" name="telefone" ng-required="true" ng-pattern="/^\(\d{2}\)\d{4,5}-\d{4}$/" ui-mask-phone/>
+			<input type="text" class='form-control' placeholder="Cor" ng-model="contato.cor"/>
+			<input type="text" class="form-control" placeholder="Data" name="data" ng-model="contato.data" ui-date/>
+			<select class="form-control" ng-required="true" name="operadora" ng-model="contato.operadora" 
+				ng-options="operadora.nome + ' (' + (operadora.preco | currency ) + ')'  group by operadora.categoria for operadora in operadoras  | orderBy: 'nome' | orderBy: 'categoria' " >
+				<option value="">Selecione</option>
+			</select>
+			<!--<input type="text" class="form-control" placeholder="Hora" name="hora" ng-model="contato.hora" ui-mask-hour/>
+			<input type="text" class='form-control' placeholder="CPF" ng-model="contato.cpf" name="cpf" ui-mask-cpf ng-pattern="/^\d{3}.\d{3}.\d{3}-\d{2}$/"/>
+			<input type="text" class='form-control' placeholder="CNPJ" ng-model="contato.cnpj" name="cnpj" ui-mask-cnpj ng-pattern="/^\d{2}.\d{3}.\d{3}\/\d{4}-\d{2}$/"/>
+			<input type="text" class='form-control' placeholder="CEP" ng-model="contato.cep" name="cep" ng-pattern="/^\d{5}-\d{3}$/" ui-mask-cep/>-->
+		</form>
+		
+		<div  ng-show="contatoForm.nome.$dirty" ng-messages="contatoForm.nome.$error">
+			<!-- Exibe a mensagem se o campo nome foi preenchido e se já foi preenchido alguma vez -->
+			<div ng-message="required" class="alert alert-danger">
+				Por favor, informe o nome.
+			</div>
+
+			<!-- Exibe a mensagem se o tamanho minimo do campo nome está correto -->
+			<div ng-message="minlength"  class="alert alert-danger">
+				O campo nome deve ter no mínino 5 caracteres.
+			</div>
+			
+			<!-- Exibe a mensagem já existir um contato com o nome informado -->
+			<div ng-message="uniqueName"  class="alert alert-danger">
+				Já existe um contato com este nome!
+			</div>
+			
+		</div>
+		
+		<div ng-show="contatoForm.telefone.$dirty">
+			<div ng-messages="contatoForm.telefone.$error">
+			<!-- Exibe a mensagem se o campo telefone foi preenchido e se já foi preenchido alguma vez-->
+			<div ng-message="required"  class="alert alert-danger">
+				Por favor, informe o telefone.
+			</div>
+			
+			<!-- Exibe a mensagem se o formato do campo telefone foi preenchido corretamente -->
+			<div ng-message="pattern"  class="alert alert-danger">
+				O campo telefone tem que estar no formato (99)(9)9999-9999.
+			</div>
+		</div>
+		</div>
+		
+		<div ng-show="contatoForm.data.$dirty" ng-messages="contatoForm.data.$error" >
+			<!-- Exibe a mensagem se o dia data informada não foi preenchido corretamente -->
+			<div ng-message="validDateDay"  class="alert alert-danger">
+				Por favor, informe um dia válido.
+			</div>
+			<!-- Exibe a mensagem se o mês data informada não foi preenchido corretamente -->
+			<div ng-message="validDateMonth"  class="alert alert-danger">
+				Por favor, informe um mês válido.
+			</div>
+			<!-- Exibe a mensagem se o ano data informada não foi preenchido corretamente -->
+			<div ng-message="validDateYear"  class="alert alert-danger">
+				O ano informado não pode ser maior que o ano atual!
+			</div>
+		</div>
+		
+		<div ng-show="contatoForm.operadora.$dirty" ng-messages="contatoForm.operadora.$error" >
+			<!-- Exibe a mensagem se o campo operadora foi preenchido e se já foi preenchido alguma vez -->
+			<div ng-message="required"  class="alert alert-danger">
+				Por favor, informe o a operadora.
+			</div>
+		</div>
+		
+		<div  ng-show="contatoForm.cpf.$dirty" ng-messages="contatoForm.cpf.$error">
+			<!-- Exibe a mensagem se o campo cpf não está no formado válido -->
+			<div ng-message="pattern" class="alert alert-danger">
+				O campo CPF tem que estar no formato 999.999.999-99.
+			</div>
+		</div>
+		
+		<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar</button>
+		<button class="btn btn-danger btn-block" ng-click="removerContato(contatos)" ng-hide="!isContatoSelecionado(contatos)">Remover</button>
+		
+		<!--<div ng-include="'view/footer.html'"></div>-->
+		
+	</div>
+</body>
+<script src="../../bower_components/angular-full/angular.js"></script>
+<script src="../../bower_components/angular-full/angular-messages.min.js"></script>
+<script src="../../bower_components/angular-full/i18n/angular-locale_pt-br.js"></script>
+<script src="../../bower_components/angular-full/angular-route.min.js"></script>
+<script src="../libs/serialGenerator/serialGenerator.js"></script>
+<script src="../libs/ui-accordion/ui-accordion.js"></script>
+<script src="../libs/ui-mask/ui-mask.js"></script>
+<script src="../libs/ui-alert/ui-alert.js"></script>
+<script src="js/app.js"></script>
+<script src="js/value/configValue.js"></script>
+<script src="js/config/serialGeneratorConfig.js"></script>
+<script src="js/services/contatoApiService.js"></script>
+<script src="js/services/operadoraAPIService.js"></script>
+<script src="js/filters/nameFilter.js"></script>
+<script src="js/filters/ellipsisFilter.js"></script>
+<script src="js/controllers/ListaTelefonicaCtrl.js"></script>
+<script src="js/directives/uiDateDirective.js"></script>
+<script src="js/directives/uiUniqueNameDirective.js"></script>
+<script src="js/config/httpConfig.js"></script>
+</html>
