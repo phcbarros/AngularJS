@@ -1,0 +1,9 @@
+<div class="jumbotron">
+	<input type="text" class='form-control' placeholder="Nome" ng-model="contato.nome" name="nome" ng-disabled="true"/>
+	<input type="text" class='form-control' placeholder="Telefone" ng-model="contato.telefone" name="telefone" ng-disabled="true"/>
+	<div style="width:20px; height:20px; margin: 0.5em 0;" ng-style="{'background-color': contato.cor }"></div>
+	<input type="text" class="form-control" placeholder="Data" name="data" ng-model="contato.data" ng-disabled="true" ui-date/>
+	<input type="text" class="form-control" placeholder="Operadora" name="operadora" ng-model="contato.operadora.nome" ng-disabled="true"/>
+	<hr/>
+	<a href="#/contatos">Voltar</a>
+</div>
