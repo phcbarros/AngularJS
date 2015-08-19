@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="myApp" >
+<head lang="pt-BR">
+	<title>File Upload with AngularJS</</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../bower_components/jqueryui-datepicker/datepicker.css"></script>
+</head>
+<body ng-controller="MainCtrl">
+	<form id="uploadForm" method="post" enctype="multipart/form-data">
+		<div class="container">
+			<div class="form-horizontal" style="margin-top:30px">
+				<div class="row" >
+					<div class="form-group">
+						<label for="testUpload" class="col-sm-3 label-control">Arquivo:</label>
+						<div class="col-sm-9">
+							<input type="file" id="testUpload" 
+								class="form-control" 
+								name="files[]"
+								fileupload 
+								data-url="http://localhost:3000/api/photo" 
+								multiple	
+								done="uploadFinished(e, data)"/>
+						</div>	
+					</div>
+				</div>
+			</div> 
+		</div>
+	</form>
+</body>
+<script src="../../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="jquery.ui.widget.js"></script>
+<script src="jquery.iframe-transport.js"></script>
+<script src="jquery.fileupload.js"></script>
+<script src="../../../bower_components/angular-full/angular.min.js"></script>
+<script src="app.js"></script>
+<script src="directives.js"></script>
+</html>
