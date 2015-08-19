@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="myApp" >
+<head lang="pt-BR">
+	<title>AngularJS Team List</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../bower_components/jqueryui-datepicker/datepicker.css"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="form-horizontal" style="margin-top:30px">
+			<div class="row" ng-controller="FilterCtrl">
+				<div class="form-group">
+					<label for="searchTextbox" class="col-sm-3 label-control">Search:</label>
+					<div class="col-sm-9">
+						<input type="text" id="searchTextbox" class="form-control" ng-model="filterService.searchText"/>
+					</div>	
+				</div>
+				
+				<!-- sport -->
+				<div class="form-group">
+					<label for="sportComboBox" class="col-sm-3 label-control">Sport:</label>
+					<div class="col-sm-9">
+						<select name="sportComboBox" id="sportComboBox" class="form-control" 
+							ng-model="filterService.activeFilters.sport"
+							ng-options="sport for sport in sports"
+							ng-change="changeSport(filterService.activeFilters.sport)">>
+							<option value="">Selecione...</option>
+						</select>
+					</div>	
+				</div>
+				
+				<!-- city -->
+				<div class="form-group">
+					<label for="cityComboBox" class="col-sm-3 label-control">City:</label>
+					<div class="col-sm-9">
+						<select name="cityComboBox" id="cityComboBox" class="form-control" 
+							ng-model="filterService.activeFilters.city" 
+							ng-options="city for city in cities"
+							ng-change="changeCity(filterService.activeFilters.city)">
+							<option value="">Selecione...</option>
+						</select>
+					</div>	
+				</div>
+				
+				<!-- Featured -->
+				<div class="form-group">
+					<label for="searchTextbox" class="col-sm-3 label-control">Featured:</label>
+					<div class="col-sm-9">
+						<input type="checkbox" ng-model="filterService.activeFilters.featured" ng-false-value=""/>
+					</div>	
+				</div>
+				
+			</div>
+			
+			<div class="row" ng-controller="ListCtrl">
+				<div class="table-responsive">
+					<table class="table table-stripped table-bordered">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Sport</th>
+								<th>City</th>
+								<th>Featured</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="team in teamsList | filter: filterService.activeFilters | 
+																filter: filterService.searchText">
+								<td>{{team.name}}</td>
+								<td>{{team.sport}}</td>
+								<td>{{team.city}}</td>
+								<td>{{team.featured}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div> 
+	</div>
+</body>
+<script src="../../../bower_components/angular-full/angular.min.js"></script>
+<script src="app.js"></script>
+<script src="services.js"></script>
+</html>
