@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="myApp" >
+<head>
+	<title>AngularJS Datepicker</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../bower_components/jqueryui-datepicker/datepicker.css"></script>
+</head>
+<body ng-controller="MainCtrl">
+	<div class="container">
+		<div class="form-horizontal" style="margin-top:30px">
+			<div class="form-group">
+				<input type="text" id="teste" class="form-control"/>	
+			</div>
+			{{myText}} - {{currentDate}}	
+			<div class="form-group">
+				<input type="text" class="form-control"  id="dateField" 
+				ng-model="currentDate"
+				datepicker 	select="updateMyText(date)"/>		
+			</div>
+		</div> 
+
+	</div>
+</body>
+<script src="../../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../../bower_components/jqueryui-datepicker/datepicker.js"></script>
+<script src="../../../bower_components/jqueryui-datepicker/i18n/datepicker-pt-BR.js"></script>
+<script src="../../../bower_components/angular-full/angular.min.js"></script>
+<script src="app.js"></script>
+<script src="datepicker.js"></script>
+<script>
+	$(function(){
+		$('#teste').datepicker();
+	})
+</script>
+</html>
