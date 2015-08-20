@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="myApp" >
+<head lang="pt-BR">
+	<title>File Upload with AngularJS</</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://localhost:3000/static/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-controller="MainCtrl">
+	<div class="container">
+		<div class="form-horizontal" style="margin-top:30px">
+			<div class="row" >
+				<div class="form-group">
+					<label for="testUpload" class="col-sm-3 label-control">Arquivo:</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" ng-model="message"/>
+					</div>	
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-9">
+						<button class="btn btn-primary" ng-click="broadcast()">Broadcast</button>
+					</div>	
+				</div>
+				<ul ng-show="messages">
+					<li ng-repeat="msg in messages">
+						<strong>{{msg.date | date:'dd/MM/yyyy'}}: </strong>
+						 {{msg.message}}</li>
+				</ul>
+				
+			</div>
+		</div> 
+	</div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://localhost:3000/static/angular-full/angular.js"></script>
+<script src="app.js"></script>
+<script src="services.js"></script>
+</html>
