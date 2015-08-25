@@ -12,8 +12,9 @@
 		<input type="text" class='form-control' placeholder="CPF" ng-model="contato.cpf" name="cpf" ui-mask-cpf ng-pattern="/^\d{3}.\d{3}.\d{3}-\d{2}$/"/>
 		<input type="text" class='form-control' placeholder="CNPJ" ng-model="contato.cnpj" name="cnpj" ui-mask-cnpj ng-pattern="/^\d{2}.\d{3}.\d{3}\/\d{4}-\d{2}$/"/>
 		<input type="text" class='form-control' placeholder="CEP" ng-model="contato.cep" name="cep" ng-pattern="/^\d{5}-\d{3}$/" ui-mask-cep/>-->
+		<!--<input type="text" class='form-control' placeholder="R$" ng-model="contato.moeda" name="moeda" ui-mask-currency evento="keyup"/>-->
 	</form>
-	
+
 	<div  ng-show="contatoForm.nome.$dirty" ng-messages="contatoForm.nome.$error">
 		<!-- Exibe a mensagem se o campo nome foi preenchido e se já foi preenchido alguma vez -->
 		<div ng-message="required" class="alert alert-danger">

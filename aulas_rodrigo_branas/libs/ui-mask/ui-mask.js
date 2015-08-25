@@ -186,3 +186,80 @@ angular.module('uiMask').directive('uiMaskPhone', function(){
 		}	
 	};
 });
+
+//R$ 0,00
+angular.module('uiMask').directive('uiMaskCurrency', function($filter){
+	return {
+		require: 'ngModel',
+		scope:{
+			evento: '@'	
+		},
+		link: function(scope, element, attrs, ctrl){
+			
+			//usado no evento blur
+			var _formatBlur = function(value){
+				if(!value) return value;
+				
+				value = value.replace(/[^0-9\.,]+/g, ''); //limpa o campo antes de formatar
+				value = value.replace(/,/g,'.'); //troca vírgula por ponto						
+				
+				return $filter('currency')(value);	
+			};
+			
+			//usado no evento keyup
+			var _formatKeyup = function(value){
+				
+				if(!value) return value;
+				value = value.replace(/[^0-9\.,]+/g, ''); //limpa o campo antes de formatar
+				value = value.replace(/,/g,'.'); //troca vírgula por ponto
+				
+				var numeroDecimal = value.match(/\./g);
+				
+				if(numeroDecimal && numeroDecimal.length > 1)
+					value =  value.replace('.',''); //retira o primeiro ponto
+									
+				if(/^\d{1,}\.\d{3,}$/.test(value)){
+					var arr = value.split('.')
+					value = arr[0] + arr[1].substring(0,1) + ',' + arr[1].substring(1);
+				}
+					
+				value = value.replace(/\./g,','); //troca ponto por vírgula						
+								
+				return "R$" + value;	
+			};
+			
+			//faz a chamada de acordo com o evento
+			var fn = function(event, funcFormat){
+				element.bind(event, function(){
+					ctrl.$setViewValue(funcFormat(ctrl.$viewValue));
+					ctrl.$render();
+				});
+			};
+			
+			switch (scope.evento.toLowerCase()) {
+				case 'blur':
+					fn('blur', _formatBlur);
+					break;
+				case 'keyup':
+					fn('keyup', _formatKeyup);
+					break;
+				default:
+					fn('keyup', _formatKeyup);
+					break;
+			}
+						
+			ctrl.$parsers.push(function(value){
+						
+				if(value.match(/,/g))
+					value = value.replace(/,/g,'.'); //troca vírgula por ponto	
+							
+				return value.replace(/[R$]/g,'') || 0; 
+			});
+			
+			ctrl.$formatters.push(function(value){
+				return $filter('currency')(value);
+			});
+			
+		}
+	};
+});
