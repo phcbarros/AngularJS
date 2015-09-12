@@ -1,0 +1,8 @@
+div.alinhar{
+	display: inline-flex;
+	padding: 5px;
+}
+
+div.alinhar input, div.alinhar button{
+	margin: 0 5px;
+}

@@ -1,0 +1,13 @@
+<div ng-transclude="" ng-hide="show()"></div>
+<div class="alinhar" ng-show='show()'>
+	<input type="{{type}}" ng-click="$event.stopPropagation()" class="form-control" style="width:160px"
+		ng-model="copy[field]">
+	<button type="button" class="btn btn-primary" title="Salvar"
+		ng-click="update($event, copy)">
+		<span class="glyphicon glyphicon-ok"></span>
+	</button>
+	<button type="button" class="btn btn-danger" title="Cancelar" 
+		ng-click='cancel($event, copy, user)'>
+		<span class="glyphicon glyphicon-minus"></span>
+	</button>
+</div>
