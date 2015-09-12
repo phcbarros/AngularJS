@@ -63,6 +63,9 @@ function createEditableInput(){
 				scope.$apply(function(){
 					scope.copy = angular.copy(scope.user);
 					scope.editable = scope.field;
+					
+					var dataType = typeof scope.user[scope.field];
+					scope.type = dataType === 'string' ? 'text' : dataType;
 				});
 				
 			});
