@@ -27,23 +27,26 @@
 							<td editable-input
 								field='nome'
 								user='usuario'
-								action="updade(user)">
+								action="update(user)">
 								<span>{{usuario.nome}}</span>
 							</td>
 							<td editable-input
 								field='idade'
-								user='usuario'>
+								user='usuario'
+								action="update(user)">
 								<span>{{usuario.idade}}</span>
 							</td>
 							<td editable-input
 								field='email'
-								user='usuario'>
+								user='usuario'
+								action="update(user)">
 								<span>{{usuario.email}}</span>
 							</td>
 							<td editable-input
 								field='dataNascimento'
-								user='usuario'>
-								<span>{{usuario.dataNascimento}}</span>
+								user='usuario'
+								action="update(user)">
+								<span>{{usuario.dataNascimento | date: 'dd/MM/yyyy'}}</span>
 							</td>
 						</tr>
 					</tbody>
@@ -52,10 +55,12 @@
 		</div>
 	</div>
 </body>
+
 <script src="../../bower_components/angular-full/angular.min.js"></script>
 <script src="../../bower_components/angular-full/angular-messages.min.js"></script>
 <script src="../../bower_components/angular-full/i18n/angular-locale_pt-br.js"></script>
 <script src="js/app.js"></script>
 <script src="js/controllers/usuario-controller.js"></script>
 <script src="js/directives/ui-table-editable.js"></script>
+
 </html>

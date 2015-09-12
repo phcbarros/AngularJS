@@ -23,7 +23,7 @@ function usuarioController($scope){
 	init();
 };
 
-Array.prototype.indeOfById = function(id){
+Array.prototype.indexOfById = function(id){
 	var index = -1,
         i = 0,
         l = this.length;
