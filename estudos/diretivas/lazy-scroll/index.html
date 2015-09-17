@@ -1,0 +1,28 @@
+<!DOCTYPE>
+<html ng-app="myApp">
+<head>
+	<title>Diretivas</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+	
+</head>
+<body ng-controller="testeController">
+	<div class="container">
+		<div class="form-horizontal">
+			<h3>Lazy Loading - Infinite Scroll</h3>
+			
+ 			<div class="col-md-6 jumbotron" style="width: 400px; height:400px; margin: 10px" ng-repeat="data in testData" lazy-scroll="listData()" >
+              {{data.id}}
+            </div>
+		</div>
+	</div>
+</body>
+
+<script src="../../../bower_components/angular-full/angular.min.js"></script>
+<script src="../../../bower_components/angular-full/i18n/angular-locale_pt-br.js"></script>
+<script src="lazy-scroll.min.js"></script>
+<script src="app.js"></script>
+
+</html>
