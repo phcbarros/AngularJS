@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/app.css">
+	<title>To Do List</title>
+</head>
+<body ng-app="myApp" class="container" style="margin-top:10px;">
+	<div ng-controller="toDoController" class="form-horizontal">
+		
+		<div class="form-group">
+			<label for="txtTarefa" class="col xs-12 col-sm-2 label-control">Tarefa</label>
+			<div class="col-xs-12 col-sm-4">
+				<input type="text" id="txtTarefa" ng-model="tarefa.nome" class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-xs-12 col-sm-offset-2 col-sm-4">
+				<button type="button" id="btnAdd" class="btn btn-success" ng-click="add(tarefa)">Adicionar</button>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-xs-12 col-sm-offset-2 col-sm-10">
+				<ol>
+					<li ng-repeat="tarefa in tarefas">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" 
+								ng-model="tarefa.isSelected" 
+								ng-checked="false" 
+								ng-change="change(tarefa)" 
+								ng-class="{riscar: tarefa.isSelected}"/>
+								<span>{{::tarefa.nome}}</span>
+							</label>
+						</div>
+					</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="../../../bower_components/angular-full/angular.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controllers/toDoController.js"></script>
+</html>
