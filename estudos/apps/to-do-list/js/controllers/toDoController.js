@@ -3,13 +3,15 @@ angular.module('myApp')
 	
 function toDoController($scope){
 		
-	$scope.add = function(tarefa){
-		$scope.tarefas.push(angular.copy(tarefa));
-		delete tarefa.nome;	
-	};
-	
 	var init = function(){
 		$scope.tarefas = [];	
+	};
+	
+	$scope.add = function(event, tarefa){
+		if(event.keyCode === 13){
+			$scope.tarefas.push(angular.copy(tarefa));
+			delete tarefa.nome;	
+		}
 	};
 	
 	init();
