@@ -1,15 +1,17 @@
 <!DOCTYPE>
 <html ng-app="myApp">
+
 <head>
 	<title>Diretivas</title>
 	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../../../bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/app.css">
 </head>
+
 <body ng-controller="UsuarioController">
-	<div class="container">
+		<div class="container">
 		<div class="form-horizontal">
 			<h3>Criação de Teste de tabela editável</h3>
 			<div class="table-responsive" container-editable>
@@ -24,28 +26,16 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="usuario in usuarios | orderBy: 'nome'">
-							<td editable-input
-								field='nome'
-								user='usuario'
-								action="update(user)">
+							<td editable-input field='nome' user='usuario' action="update(user)">
 								<span>{{usuario.nome}}</span>
 							</td>
-							<td editable-input
-								field='idade'
-								user='usuario'
-								action="update(user)">
+							<td editable-input field='idade' user='usuario' action="update(user)">
 								<span>{{usuario.idade}}</span>
 							</td>
-							<td editable-input
-								field='email'
-								user='usuario'
-								action="update(user)">
+							<td editable-input field='email' user='usuario' action="update(user)">
 								<span>{{usuario.email}}</span>
 							</td>
-							<td editable-input
-								field='dataNascimento'
-								user='usuario'
-								action="update(user)">
+							<td editable-input field='dataNascimento' user='usuario' action="update(user)">
 								<span>{{usuario.dataNascimento | date: 'dd/MM/yyyy'}}</span>
 							</td>
 						</tr>
