@@ -11,7 +11,11 @@
 			</li>
 		</ul>
 		<input type="text" ng-model="fruit"/>
-		<button ng-click="deliver(fruit)">I want to eat that!</button>
+		<button ng-click="deliverBroadcast(fruit)">I want to eat that! ($broadcast)</button>
+		<button ng-click="deleveryNotificationService(fruit)">I want to eat that! (<notificationService></notificationService>)</button>
+		<ul>
+			<li ng-repeat="event in events track by $index">{{event}}</li>
+		</ul>
 	</div>
 	<div ng-controller="deliveryCtrl">
 		<h3 ng-show="received" >Request received: {{delivery}}</h3>
