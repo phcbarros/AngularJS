@@ -1,0 +1,46 @@
+{
+  "name": "hooks",
+  "version": "1.0.0",
+  "description": "Exemplos utilizando lifecycle hooks",
+  "main": "index.js",
+  "scripts": {
+    "lite": "lite-server",
+    "build": "babel src -d dist"
+  },
+  "keywords": [
+    "angular",
+    "1.5",
+    "hooks"
+  ],
+  "author": "Paulo Barros",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.1",
+    "concurrently": "^2.1.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-run": "^1.7.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "install": "^0.8.1",
+    "lite-server": "^2.2.0",
+    "npm": "^3.10.2",
+    "run-sequence": "^1.2.1",
+    "systemjs": "^0.19.31",
+    "webpack": "^1.13.1"
+  },
+  "dependencies": {
+    "angular": "^1.5.7",
+    "babel-polyfill": "^6.9.1",
+    "babel-runtime": "^6.9.2",
+    "del": "^2.2.1"
+  }
+}
