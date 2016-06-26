@@ -14,6 +14,12 @@ class TabsController {
 
         this.tabs[index].selected = true;
     }
+
+    $postLink() {
+        console.log('$postLink');
+        let selected = this.selected || 0;
+        this.selectTab(selected);
+    }
 }
 
 export default TabsController;

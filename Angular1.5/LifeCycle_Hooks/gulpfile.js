@@ -80,7 +80,7 @@ gulp.task('dist-css', ['clean-dist-css'], function(){
         .pipe(gulp.dest(paths.rootPath + 'app/css/'));
 });
 
-gulp.task('dist-app', ['clean-js', 'dist-js-vendor', 'dist-js', 'dist-css']);
+gulp.task('dist-app', ['clean-js', 'dist-js', 'dist-css']);
 
 gulp.task('default', function (done) {
     runSequence('browserify',['dist-app'], 'del', done);

@@ -4,8 +4,8 @@ import TabsComponent from './tabs.component';
 
 const Tabs = angular
     .module('app.tabs', [])
-    .component('tab', TabComponent)
     .component('tabs', TabsComponent)
+    .component('tab', TabComponent)
     .name;
 
 export default Tabs;

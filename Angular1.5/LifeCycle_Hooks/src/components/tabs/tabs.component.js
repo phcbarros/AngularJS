@@ -1,6 +1,9 @@
 import controller from './tabs.controller';
 
 const TabsComponent = {
+    bindings: {
+        selected: '@'
+    },
     transclude: true,
     template: `
         <div class="tabs">
