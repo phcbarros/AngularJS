@@ -4,7 +4,9 @@ import controller from './hello-world.controller';
 const HelloWorldComponent = {
     controller,
     template: `
-        Hello World {{$ctrl.name}}
+        <div class="hello-world">
+            <h1>Hello World {{$ctrl.name}}</h1>
+        </div>
     `
 }
 

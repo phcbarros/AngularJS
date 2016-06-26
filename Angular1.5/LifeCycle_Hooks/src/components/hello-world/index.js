@@ -3,7 +3,7 @@ import "babel-polyfill";
 import HelloWorldComponent from './hello-world.component';
 
 const helloWorld = angular
-    .module('helloWorld', [])
+    .module('app.helloWorld', [])
     .component('helloWorld', HelloWorldComponent)
     .name;
 
