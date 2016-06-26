@@ -68,12 +68,7 @@ gulp.task('default', function (done) {
 
 gulp.task('browserify', function () {
 
-   return browserify([
-        'src/app.js', 
-        'src/app.component.js',
-        'src/components/hello-world/hello-world.component.js',
-        'src/components/hello-world/hello-world.controller.js',
-        'src/components/hello-world/index.js'], { debug: true })
+   return browserify('src/app.js', { debug: true })
         .transform(babelify)
         .bundle()
         .on("error", function (err) { console.log("Error: " + err.message); })
