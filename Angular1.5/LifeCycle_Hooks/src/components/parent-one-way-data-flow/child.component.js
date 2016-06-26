@@ -6,7 +6,7 @@ const ChildComponent2 = {
         onUpdate: '&'
     },
     template: `
-        <input type="text" ng-model="$ctrl.user.name"/>
+        <input type="text" ng-model="$ctrl.user.name" autofocus/>
         <button type="button" ng-click="$ctrl.saveUser()">Update</button>
     `,
     controller
