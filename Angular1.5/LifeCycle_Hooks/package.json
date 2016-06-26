@@ -8,8 +8,7 @@
     "build": "babel src -d dist"
   },
   "keywords": [
-    "angular",
-    "1.5",
+    "angular 1.5",
     "hooks"
   ],
   "author": "Paulo Barros",
@@ -37,9 +36,7 @@
     "less-plugin-autoprefix": "^1.5.1",
     "lite-server": "^2.2.0",
     "npm": "^3.10.2",
-    "run-sequence": "^1.2.1",
-    "systemjs": "^0.19.31",
-    "webpack": "^1.13.1"
+    "run-sequence": "^1.2.1"
   },
   "dependencies": {
     "angular": "^1.5.7"

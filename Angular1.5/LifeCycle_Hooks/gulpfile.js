@@ -36,7 +36,7 @@ gulp.task('dist-js', ['browserify'], function () {
 
 gulp.task('browserify', function () {
    return browserify('src/app.js', { debug: true })
-        .transform(babelify)
+        .transform(babelify, { presets: ['es2015']})
         .bundle()
         .on("error", function (err) { console.log("Error: " + err.message); })
         .pipe(fs.createWriteStream('app.bundle.js'));
